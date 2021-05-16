@@ -1,26 +1,39 @@
 import React from 'react';
 
+class App extends React.Component{
+  constructor(prop){
+    super(prop);
+    console.log('ddddddfasdfasdf');
+  }
+ 
+  state = {
+  count : 0,
+ };
 
-function Food({name,picture}){
-  return (<div>
-    <h1> i like {name}</h1>
-    <img src = {picture}></img>
-    </div>);
+ add = () =>{this.setState(current =>({count:current.count+1,}))};
+ minus = () =>{this.setState(current =>({count:current.count-1,}))};
 
+componentDidMount(){
+  console.log('component did mount');
 }
-const foodLike = [
-{
-  name : 'kimchi',
-  image : 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.QKNL3H-b8pGMgfg77Ig8BAHaE8%26pid%3DApi&f=1'
+
+componentDidUpdate(){
+  console.log('component did update');
 }
 
-]
-
-function App() {
+ render(){
+   console.log('render')
   return (
-  <div> {foodLike.map(dish =>(<Food name={dish.name} picture ={dish.image}/>))}
-  </div>
-    )
+  <div>
+  <h1> number :{this.state.count}</h1> 
+  <button onClick = {this.add}>add
+  </button>
+  <button onClick = {this.minus}>minus
+  </button>
+  </div>);
+ 
+
+ }
 }
 
 export default App;
