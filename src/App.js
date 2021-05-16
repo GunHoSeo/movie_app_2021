@@ -21,6 +21,10 @@ componentDidUpdate(){
   console.log('component did update');
 }
 
+componentDidUpdate(){
+  console.log('component did update');
+}
+
  render(){
    console.log('render')
   return (
