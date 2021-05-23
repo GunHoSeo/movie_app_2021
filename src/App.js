@@ -1,42 +1,28 @@
 import React from 'react';
 
 class App extends React.Component{
-  constructor(prop){
-    super(prop);
-    console.log('ddddddfasdfasdf');
-  }
- 
+  
   state = {
-  count : 0,
- };
+    isLoading : true,
+    movies:[],
+  }
+ //axios , fetch , jquery 다 가능함 
+  getMovies = async ()=>{
+    const movies = await fetch('https://yts.mx/api/v2/list_movies.json',).then((response) =>{
+      console.log('response',response);
+      console.log(movies);
+    }).catch((error) => {
+      console.log('error',error)
+    })
+  }
 
- add = () =>{this.setState(current =>({count:current.count+1,}))};
- minus = () =>{this.setState(current =>({count:current.count-1,}))};
-
-componentDidMount(){
-  console.log('component did mount');
-}
-
-componentDidUpdate(){
-  console.log('component did update');
-}
-
-componentDidUpdate(){
-  console.log('component did update');
-}
+  componentDidMount(){
+   this.getMovies();
+  }
 
  render(){
-   console.log('render')
-  return (
-  <div>
-  <h1> number :{this.state.count}</h1> 
-  <button onClick = {this.add}>add
-  </button>
-  <button onClick = {this.minus}>minus
-  </button>
-  </div>);
- 
-
+  const { isLoading } = this.state;
+  return <div>{isLoading ? 'Loading... ' : 'We are ready'}</div>;
  }
 }
 
